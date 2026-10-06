@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AFMS</title>
+</head>
+
+<body>
+<h1>Airline List</h1>
+<table border="1">
+
+<tr>
+
+<th>Airline ID</th>
+<th>Airline Name</th>
+<th>IATA CODE</th>
+<th>ICAO CODE</th>
+<th>Country</th>
+<th>Delete</th>
+
+</tr>
+
+{%for Airline in Airline_Data%}
+<tr>
+
+<td>{{Airline.Airline_ID}}</td>
+<td>{{Airline.Name}}</td>
+<td>{{Airline.IATA_Code}}</td>
+<td>{{Airline.ICAO_Code}}</td>
+<td>{{Airline.Country}}</td>
+
+
+
+<td>
+
+<form action="/DeleteAirline/{{ Airline.Airline_ID}}" method="POST" style="margin: 0;">
+
+<button type="submit" style="color: white; background-color: red;">Delete</button>
+
+</form>
+
+</td>
+
+
+
+
+
+</tr>
+{%endfor%}
+
+</table>
+
+
+<h1>Add Airline</h1>
+<div>
+
+<form action="/AddAirline" method="POST">
+    
+    <label for="airline_name">Airline Name:</label>
+    <input type="text" id="airline_name" name="Airline_Name">
+    <br>
+    
+    <label for="iata_code">IATA Code:</label>
+    <input type="text" id="iata_code" name="IATA_Code">
+    <br>
+
+    <label for="icao_code">ICAO Code:</label>
+    <input type="text" id="icao_code" name="ICAO_Code">
+    <br>
+
+    <label for="airline_country">Country:</label>
+    <input type="text" id="airline_country" name="Airline_Country">
+    
+    <br>
+    <button type="submit">Add Flight</button>
+
+</form>
+
+</div>
+
+
+
+</body>
+</html>
