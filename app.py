@@ -40,6 +40,26 @@ def Delete_Airline(id):
     execute(sql,params)
     return redirect(url_for('DisplayAirline'))
 
+@app.route('/UpdateAirline/<int:id>',methods=['GET','POST'])
+def Update_Airline(id):
+    if request.method == 'POST':
+        Airline_Name = request.form['Airline_Name']
+        IATA_Code = request.form['IATA_Code']
+        ICAO_Code = request.form['ICAO_Code']
+        Airline_Country = request.form['Airline_Country']
+
+        # The SQL UPDATE command
+        sql = 'UPDATE Airline SET Name=%s, IATA_Code=%s, ICAO_Code=%s, Country=%s WHERE Airline_ID=%s'
+        params = (Airline_Name, IATA_Code, ICAO_Code, Airline_Country, id)
+        execute(sql, params)
+
+        return redirect(url_for('DisplayAirline'))
+    else:
+        sql = 'SELECT * FROM Airline WHERE Airline_ID=%s'
+        params = (id,)
+        airline_to_edit = fetch_one(sql, params)
+        return render_template('UpdateAirline.html', airline=airline_to_edit)
+
 
 
 if __name__=="__main__":

@@ -18,6 +18,7 @@
 <th>IATA CODE</th>
 <th>ICAO CODE</th>
 <th>Country</th>
+<th>Edit</th>
 <th>Delete</th>
 
 </tr>
@@ -31,7 +32,9 @@
 <td>{{Airline.ICAO_Code}}</td>
 <td>{{Airline.Country}}</td>
 
-
+<td>
+<a href="/UpdateAirline/{{ Airline.Airline_ID }}" style="text-decoration: none; background-color: #f39c12; color: white; padding: 8px 12px; border-radius: 4px; margin-right: 5px; font-weight: bold; font-size: 14px;">Edit</a>
+</td>
 
 <td>
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Airline - AFMS</title>
+    <!-- We can reuse your exact same stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <h1>Update Airline Details</h1>
+    
+    <div class="form-container">
+        <!-- Notice the dynamic route in the action, exactly like the delete button -->
+        <form action="/UpdateAirline/{{ airline.Airline_ID }}" method="POST">
+            
+            <label for="airline_name">Airline Name:</label>
+            <input type="text" id="airline_name" name="Airline_Name" value="{{ airline.Name }}" required>
+            <br>
+            
+            <label for="iata_code">IATA Code:</label>
+            <input type="text" id="iata_code" name="IATA_Code" value="{{ airline.IATA_Code }}" required>
+            <br>
+
+            <label for="icao_code">ICAO Code:</label>
+            <input type="text" id="icao_code" name="ICAO_Code" value="{{ airline.ICAO_Code }}" required>
+            <br>
+
+            <label for="airline_country">Country:</label>
+            <input type="text" id="airline_country" name="Airline_Country" value="{{ airline.Country }}" required>
+            <br>
+            
+            <button type="submit" class="btn-submit">Save Changes</button>
+            
+            <!-- A simple link to back out without saving -->
+            <a href="/Airline" style="margin-left: 15px; text-decoration: none; color: #e74c3c; font-weight: bold;">Cancel</a>
+
+        </form>
+    </div>
+
+</body>
+</html>
