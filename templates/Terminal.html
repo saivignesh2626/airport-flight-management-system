@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AFMS</title>
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+
+<body>
+
+    <h1>Terminal List</h1>
+
+    <table>
+        <tr>
+            <th>Terminal ID</th>
+            <th>Terminal Number</th>
+            <th>Terminal Name</th>
+            <th>Status</th>
+            <th>Airport ID<th>
+            <th>Delete</th>
+            
+        </tr>
+
+        {%for Terminal in Terminal_Data%}
+
+        <tr>
+
+            <td>{{Terminal.Terminal_ID}}</td>
+            <td>{{Terminal.Terminal_Number}}</td>
+            <td>{{Terminal.Terminal_Name}}</td>
+            <td>{{Terminal.Terminal_Status}}</td>
+            <td>{{Terminal.Airport_ID}}</td>
+
+            <td>
+
+                <form action="/DeleteTerminal/{{Terminal.Terminal_ID}}" method="POST">
+                <button type="submit">Delete</button>
+
+            </td>
+
+
+        </tr>
+        {%endfor%}
+    </table>
+
+
+
+
+
+</body>
+</html>

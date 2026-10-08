@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AFMS</title>
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+
+<body>
+
+    <h1>Airport List</h1>
+
+    <table>
+        <tr>
+        <th>Airport ID</th>
+        <th>IATA Code</th>
+        <th>Airport Name</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Delete</th>
+        </tr>
+
+        {%for Airport in Airport_Data%}
+
+        <tr>
+            <td>{{Airport.Airport_ID}}</td>
+            <td>{{Airport.IATA_Code}}</td>
+            <td>{{Airport.Airport_Name}}</td>
+            <td>{{Airport.Airport_City}}</td>
+            <td>{{Airport.Airport_Country}}</td>
+
+            <td>
+                <form action="/DeleteAirport/{{Airport.Airport_ID}}" method="POST">
+                <button type="submit" style="color: white; background-color: red;">Delete</button>
+            </td>   
+
+
+        </tr>
+        {%endfor%}
+        
+    </table>
+
+
+<h1>Add Airport</h1>
+
+<form action="/AddAirport" method="POST">
+
+    <label>Airport ID</label>
+    <input type="text" name="Airport_ID"><br>
+
+    <label>IATA Code</label>
+    <input type="text" name="Airport_IATA_Code"><br>
+
+    <label>Name</label>
+    <input type="text" name="Airport_Name"><br>
+
+    <label>City</label>
+    <input type="text" name="Airport_City"><br>
+
+    <label>Country</label>
+    <input type="text" name="Airport_Country"><br>
+
+    <button type="submit" class="btn-submit">Add</button>
+
+
+
+
+
+</form>
+
+
+
+
+</body>
+</html>
