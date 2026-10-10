@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update Airline - AFMS</title>
-    <!-- We can reuse your exact same stylesheet -->
+    <title>AFMS-Update Airline</title>
+  
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -10,8 +10,8 @@
     <h1>Update Airline Details</h1>
     
     <div class="form-container">
-        <!-- Notice the dynamic route in the action, exactly like the delete button -->
-        <form action="/UpdateAirline/{{ airline.Airline_ID }}" method="POST">
+        
+        <form action="{{url_for('Airlines.Update_Airline',id=airline.Airline_ID)}}" method="POST">
             
             <label for="airline_name">Airline Name:</label>
             <input type="text" id="airline_name" name="Airline_Name" value="{{ airline.Name }}" required>
@@ -31,8 +31,8 @@
             
             <button type="submit" class="btn-submit">Save Changes</button>
             
-            <!-- A simple link to back out without saving -->
-            <a href="/Airline" style="margin-left: 15px; text-decoration: none; color: #e74c3c; font-weight: bold;">Cancel</a>
+            
+            <a href="{{url_for('Airlines.Display_Airline')}}" style="margin-left: 15px; text-decoration: none; color: #e74c3c; font-weight: bold;">Cancel</a>
 
         </form>
     </div>

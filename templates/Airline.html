@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AFMS</title>
+<title>AFMS-Airlines</title>
 
 <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"><link>
 
@@ -33,12 +33,12 @@
 <td>{{Airline.Country}}</td>
 
 <td>
-<a href="/UpdateAirline/{{ Airline.Airline_ID }}" style="text-decoration: none; background-color: #f39c12; color: white; padding: 8px 12px; border-radius: 4px; margin-right: 5px; font-weight: bold; font-size: 14px;">Edit</a>
+<a href="{{url_for('Airlines.Update_Airline',id=Airline.Airline_ID)}}" style="text-decoration: none; background-color: #f39c12; color: white; padding: 8px 12px; border-radius: 4px; margin-right: 5px; font-weight: bold; font-size: 14px;">Edit</a>
 </td>
 
 <td>
 
-<form action="/DeleteAirline/{{ Airline.Airline_ID}}" method="POST" style="margin: 0;">
+<form action="{{url_for('Airlines.Delete_Airline',id=Airline.Airline_ID)}}" method="POST" style="margin: 0;">
 
 <button type="submit" style="color: white; background-color: red;">Delete</button>
 
@@ -59,7 +59,7 @@
 <h1>Add Airline</h1>
 <div>
 
-<form action="/AddAirline" method="POST">
+<form action="{{ url_for('Airlines.Add_Airline')}}" method="POST">
     
     <label for="airline_name">Airline Name:</label>
     <input type="text" id="airline_name" name="Airline_Name">

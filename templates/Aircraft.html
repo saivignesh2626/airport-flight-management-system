@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AFMS-Aircrafts</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+<body>
+
+    <h1>Aircrafts List</h1>
+
+        <table>
+
+            <tr>
+                    <th>Aircraft ID</th>
+                    <th>Tail Number</th>
+                    <th>Model</th>
+                    <th>Capacity</th>
+                    <th>Airline Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                
+            </tr>
+
+            {%for Aircraft in Aircraft_Data%}
+            <tr>
+            
+                <td>{{Aircraft.Aircraft_ID}}</td>
+                <td>{{Aircraft.Tail_Number}}</td>
+                <td>{{Aircraft.Model}}</td>
+                <td>{{Aircraft.Capacity}}</td>
+                <td>{{Aircraft.Airline_Name}}</td>
+                <td>Edit</td>
+
+                <td>
+                        Delete
+                </td>
+            
+            </tr>
+            {%endfor%}
+
+            
+
+        </table>
+
+
+    <h1>Add Aircraft</h1>
+    
+    <form action="{{ url_for('Aircrafts.Add_Aircraft') }}" method="POST">
+    
+        <label>Tail Number</label>
+        <input type="text" name="Tail_Number"><br>
+
+        <label>Model</label>
+        <input type="text" name="Model"><br>
+
+        <label>Capacity</label>
+        <input type="number" min="0" name="Capacity"><br>
+
+        <label>Airline Name</label>
+        <select name="Airline_ID" required>
+        
+        {%for Airline in Airline_Data%}
+
+        <option value="{{Airline.Airline_ID}}">{{Airline.Name}}</option>
+
+        {%endfor%}
+        
+        
+        
+        </select>
+
+        <button type="submit" class="btn-submit">Add</button>
+
+    
+    </form>
+
+</body>
+
+</head>
+
+</html>

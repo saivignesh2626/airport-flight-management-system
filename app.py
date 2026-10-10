@@ -4,10 +4,15 @@ import os
 from db import get_db_connection,fetch_all,fetch_one,execute
 load_dotenv()
 from routes.Airports import Airports_bp
+from routes.Airlines import Airlines_bp
+from routes.Aircrafts import Aircrafts_bp
 
 app=Flask(__name__)
 
 app.register_blueprint(Airports_bp)
+app.register_blueprint(Airlines_bp)
+app.register_blueprint(Aircrafts_bp)
+
 app.secret_key=os.getenv('SECRET_KEY','fallback_secret_for_testing')
 
 
@@ -15,53 +20,6 @@ app.secret_key=os.getenv('SECRET_KEY','fallback_secret_for_testing')
 def test_home():
     return  render_template('base.html')
 
-@app.route('/Airline')
-def DisplayAirline():
-    Airline_Data=fetch_all('select * from Airline')
-    return render_template('Airline.html',Airline_Data=Airline_Data)
-
-
-@app.route('/AddAirline',methods=['POST'])
-def Add_Airline():
-    Airline_Name=request.form['Airline_Name']
-    IATA_Code=request.form['IATA_Code']
-    ICAO_Code=request.form['ICAO_Code']
-    Airline_Country=request.form['Airline_Country']
-
-    params=(Airline_Name,IATA_Code,ICAO_Code,Airline_Country)
-    sql='insert into Airline (Name,IATA_Code,ICAO_Code,Country) values (%s,%s,%s,%s)'
-    execute(sql,params)
-
-    return redirect(url_for('DisplayAirline'))
-
-
-@app.route('/DeleteAirline/<int:id>',methods=['POST'])
-def Delete_Airline(id):
-    params=(id,)
-    sql='Delete from Airline Where Airline_ID=%s'
-    execute(sql,params)
-    return redirect(url_for('DisplayAirline'))
-
-@app.route('/UpdateAirline/<int:id>',methods=['GET','POST'])
-def Update_Airline(id):
-    if request.method == 'POST':
-        Airline_Name = request.form['Airline_Name']
-        IATA_Code = request.form['IATA_Code']
-        ICAO_Code = request.form['ICAO_Code']
-        Airline_Country = request.form['Airline_Country']
-
-        # The SQL UPDATE command
-        sql = 'UPDATE Airline SET Name=%s, IATA_Code=%s, ICAO_Code=%s, Country=%s WHERE Airline_ID=%s'
-        params = (Airline_Name, IATA_Code, ICAO_Code, Airline_Country, id)
-        execute(sql, params)
-
-        return redirect(url_for('DisplayAirline'))
-    else:
-        sql = 'SELECT * FROM Airline WHERE Airline_ID=%s'
-        params = (id,)
-        airline_to_edit = fetch_one(sql, params)
-        return render_template('UpdateAirline.html', airline=airline_to_edit)
-    
 
 if __name__=="__main__":
     app.run(debug=True)

@@ -1,5 +1,4 @@
 from flask import Flask,render_template,redirect,url_for,request,Blueprint
-from dotenv import load_dotenv
 from db import get_db_connection,fetch_all,fetch_one,execute
 
 

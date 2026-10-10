@@ -3,7 +3,7 @@
 <html>
 <head>
 
-<title>Home-AFMS</title>
+<title>AFMS</title>
 
 
 </head>
@@ -12,8 +12,9 @@
 
 <h1>Navigation Links</h1>
 
-<a href="{{url_for('DisplayAirline')}}">Airlines</a><br>
-<a href="{{url_for('Airports.Display_Airport')}}">Airport</a><br>
+<a href="{{ url_for('Airlines.Display_Airline') }}">Airlines</a><br>
+<a href="{{ url_for('Airports.Display_Airport') }}">Airport</a><br>
+<a href="{{ url_for('Aircrafts.Display_Aircraft') }}">Aircraft</a>
 
 
 </body>
