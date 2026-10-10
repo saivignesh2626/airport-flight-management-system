@@ -17,6 +17,7 @@
         <th>Airport Name</th>
         <th>City</th>
         <th>Country</th>
+        <th>Edit</th>
         <th>Delete</th>
         </tr>
 
@@ -30,9 +31,18 @@
             <td>{{Airport.Airport_Country}}</td>
 
             <td>
-                <form action="/DeleteAirport/{{Airport.Airport_ID}}" method="POST">
-                <button type="submit" style="color: white; background-color: red;">Delete</button>
-            </td>   
+                <a href="{{url_for('Airports.Update_Airport' , id=Airport.Airport_ID)}}" style="text-decoration: none; background-color: #f39c12; color: white; padding: 8px 12px; border-radius: 4px; margin-right: 5px; font-weight: bold; font-size: 14px;">Edit</a>
+            </td>
+
+
+            <td>
+            <form action="{{url_for('Airports.Delete_Airport' , id=Airport.Airport_ID)}}" method="POST" >
+                <button type="submit">Delete</button>
+            </form>
+            
+            </td>
+
+            
 
 
         </tr>
@@ -43,10 +53,7 @@
 
 <h1>Add Airport</h1>
 
-<form action="/AddAirport" method="POST">
-
-    <label>Airport ID</label>
-    <input type="text" name="Airport_ID"><br>
+<form action="{{url_for('Airports.Add_Airport')}}" method="POST">
 
     <label>IATA Code</label>
     <input type="text" name="Airport_IATA_Code"><br>
@@ -61,6 +68,8 @@
     <input type="text" name="Airport_Country"><br>
 
     <button type="submit" class="btn-submit">Add</button>
+
+    
 
 
 

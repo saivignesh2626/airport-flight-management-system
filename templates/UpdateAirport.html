@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>AFMS-UpdateAirport</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"><link>
+</head>
+
+<body>
+<h1>Update Airport Details</h1>
+
+<form form="{{url_for('Airports.Update_Airport' , id=Airport.Airport_ID)}}" method="POST">
+
+    <label>IATA Code</label>
+    <input type="text" name="Airport_IATA_Code" value="{{Airport.IATA_Code}}"><br>
+
+    <label>Name</label>
+    <input type="text" name="Airport_Name" value="{{Airport.Airport_Name}}" ><br>
+
+    <label>City</label>
+    <input type="text" name="Airport_City" value="{{Airport.Airport_City}}" ><br>
+
+    <label>Country</label>
+    <input type="text" name="Airport_Country" value="{{Airport.Airport_Country}}" ><br>
+
+    <button type="submit" class="btn-submit">Save Changes</button>
+    <a href="{{url_for('Airports.Display_Airport')}}" style="color:red">Cancel</a>
+
+
+</form>
+
+</body>
+
+
+</html>
