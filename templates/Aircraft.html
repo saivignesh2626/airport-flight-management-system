@@ -31,10 +31,20 @@
                 <td>{{Aircraft.Model}}</td>
                 <td>{{Aircraft.Capacity}}</td>
                 <td>{{Aircraft.Airline_Name}}</td>
-                <td>Edit</td>
+
 
                 <td>
-                        Delete
+
+                        <a href="{{url_for('Aircrafts.Update_Aircraft',id=Aircraft.Aircraft_ID)}}">Edit</a>
+
+                </td>
+
+                <td>
+                    
+                    <form action="{{ url_for('Aircrafts.Delete_Aircraft' ,id=Aircraft.Aircraft_ID)}}">
+                        <button type="submit" class="btn-delete">Delete</button>
+                    </form>
+
                 </td>
             
             </tr>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AFMS-Update Aircraft</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<h1>Update Aircraft Details</h1>
+
+<div>
+
+<form action="{{url_for('Aircrafts.Update_Aircraft',id=Aircraft.Aircraft_ID)}}" method="POST">
+    
+        <label>Tail Number</label>
+        <input type="text" name="Tail_Number" value="{{Aircraft.Tail_Number}}"><br>
+
+        <label>Model</label>
+        <input type="text" name="Model" value="{{Aircraft.Model}}"  ><br>
+
+        <label>Capacity</label>
+        <input type="number" min="0" name="Capacity" value={{Aircraft.Capacity}} ><br>
+
+        <label>Airline Name</label>
+
+        <select name="Airline_ID" required >
+        
+        {%for Airline in Airline_Data%}
+
+        <option value="{{Airline.Airline_ID}}" 
+        
+        {{ 'selected' if Airline.Airline_ID==Aircraft.Airline_ID }}
+        
+        >{{Airline.Name}}</option>
+
+        {%endfor%}
+        
+        </select>
+        <br>
+        <button type="submit" class="btn-submit">Save Changes</button>
+        <a href="{{ url_for('Aircrafts.Display_Aircraft')}} " style="color:red" >Cancel</a>
+
+    
+    </form>
+
+
+</div>
+
+</body>
+
+</html>
