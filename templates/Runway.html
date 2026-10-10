@@ -1,0 +1,64 @@
+{% extends 'base.html'%}
+{%block title%}AFMS-Runways{%endblock%}
+{% block content %}
+
+    <h1>Runways List</h1>
+
+    <table>
+        <tr>
+            <th>Runway ID</th>
+            <th>Code</th>
+            <th>Length</th>
+            <th>Status</th>
+            <th>Airport Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for Runway in Runway_Data %}
+        <tr>
+            <td>{{ Runway.Runway_ID }}</td>
+            <td>{{ Runway.Runway_Code }}</td>
+            <td>{{ Runway.Runway_Length }}</td>
+            <td>{{ Runway.Runway_Status }}</td>
+            <td>{{ Runway.Airport_Name }}</td>
+            <td>
+                <a href="{{ url_for('Runways.Update_Runway', id=Runway.Runway_ID) }}">Edit</a>
+            </td>
+            <td>
+                <form action="{{ url_for('Runways.Delete_Runway', id=Runway.Runway_ID) }}" method="POST">
+                    <button type="submit" class="btn-delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Add Runway</h1>
+    <form action="{{ url_for('Runways.Add_Runway') }}" method="POST">
+
+        <label>Code</label>
+        <input type="text" name="Runway_Code" required><br>
+
+        <label>Length</label>
+        <input type="number" step="any" min="0" name="Runway_Length" required><br>
+
+        <label>Status</label>
+        <select name="Runway_Status" required>
+            {% for Status in Status_Enum %}
+            <option value="{{ Status }}">{{ Status }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Airport Name</label>
+        <select name="Airport_ID" required>
+            {% for Airport in Airport_Data %}
+            <option value="{{ Airport.Airport_ID }}">{{ Airport.Airport_Name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit" class="btn-submit">Add</button>
+
+    </form>
+
+{%endblock%}

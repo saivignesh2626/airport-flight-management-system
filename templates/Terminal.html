@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+{%block title%}AFMS-Terminals{%endblock%}
+{% block content %}
+
+    <h1>Terminals List</h1>
+
+    <table>
+        <tr>
+            <th>Terminal ID</th>
+            <th>Terminal Number</th>
+            <th>Terminal Name</th>
+            <th>Status</th>
+            <th>Airport Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for Terminal in Terminal_Data %}
+        <tr>
+            <td>{{ Terminal.Terminal_ID }}</td>
+            <td>{{ Terminal.Terminal_Number if Terminal.Terminal_Number else '' }}</td>
+            <td>{{ Terminal.Terminal_Name }}</td>
+            <td>{{ Terminal.Terminal_Status }}</td>
+            <td>{{ Terminal.Airport_Name }}</td>
+            <td>
+                <a href="{{ url_for('Terminals.Update_Terminal', id=Terminal.Terminal_ID) }}">Edit</a>
+            </td>
+            <td>
+                <form action="{{ url_for('Terminals.Delete_Terminal', id=Terminal.Terminal_ID) }}" method="POST">
+                    <button type="submit" class="btn-delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Add Terminal</h1>
+
+    <form action="{{ url_for('Terminals.Add_Terminal') }}" method="POST">
+
+        <label>Terminal Number</label>
+        <input type="text" name="Terminal_Number" maxlength="4"><br>
+
+        <label>Terminal Name</label>
+        <input type="text" name="Terminal_Name" maxlength="100" required><br>
+
+        <label>Status</label>
+        <select name="Terminal_Status" required>
+            {% for Status in Status_Enum %}
+            <option value="{{ Status }}">{{ Status }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Airport Name</label>
+        <select name="Airport_ID" required>
+            {% for Airport in Airport_Data %}
+            <option value="{{ Airport.Airport_ID }}">{{ Airport.Airport_Name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit" class="btn-submit">Add</button>
+
+    </form>
+
+{%endblock%}

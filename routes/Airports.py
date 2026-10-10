@@ -31,10 +31,11 @@ def Add_Airport():
 
 @Airports_bp.route('/Delete/<int:id>',methods=['POST'])
 def Delete_Airport(id):
-    sql='delete from Airport where Airport_ID=%s'
-    params=(id,)
-    execute(sql,params)
-    return redirect(url_for('Airports.Display_Airport'))
+    if request.method=='POST':
+        sql='delete from Airport where Airport_ID=%s'
+        params=(id,)
+        execute(sql,params)
+        return redirect(url_for('Airports.Display_Airport'))
 
 @Airports_bp.route('/Update/<int:id>',methods=['POST','GET'])
 def Update_Airport(id):

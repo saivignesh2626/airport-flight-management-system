@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+{%block title%}AFMS-Gates{%endblock%}
+{% block content %}
+
+    <h1>Gates List</h1>
+
+    <table>
+        <tr>
+            <th>Gate ID</th>
+            <th>Gate Number</th>
+            <th>Status</th>
+            <th>Terminal</th>
+            <th>Airport</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for Gate in Gate_Data %}
+        <tr>
+            <td>{{ Gate.Gate_ID }}</td>
+            <td>{{ Gate.Gate_Number }}</td>
+            <td>{{ Gate.Gate_Status }}</td>
+            <td>{{ Gate.Terminal_Name }} ({{ Gate.Terminal_Number }})</td>
+            <td>{{ Gate.Airport_Name if Gate.Airport_Name else 'N/A' }}</td>
+            <td>
+                <a href="{{ url_for('Gates.Update_Gate', id=Gate.Gate_ID) }}">Edit</a>
+            </td>
+            <td>
+                <form action="{{ url_for('Gates.Delete_Gate', id=Gate.Gate_ID) }}" method="POST">
+                    <button type="submit" class="btn-delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Add Gate</h1>
+
+    <form action="{{ url_for('Gates.Add_Gate') }}" method="POST">
+
+        <label>Gate Number</label>
+        <input type="text" name="Gate_Number" maxlength="3" required><br>
+
+        <label>Status</label>
+        <select name="Gate_Status" required>
+            {% for Status in Status_Enum %}
+            <option value="{{ Status }}">{{ Status }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Terminal</label>
+        <select name="Terminal_ID">
+            <option value="">-- None --</option>
+            {% for Terminal in Terminal_Data %}
+            <option value="{{ Terminal.Terminal_ID }}">
+                {{ Terminal.Terminal_Name }} ({{ Terminal.Terminal_Number }})
+            </option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit" class="btn-submit">Add</button>
+
+    </form>
+
+{%endblock%}

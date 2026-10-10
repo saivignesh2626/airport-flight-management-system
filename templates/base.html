@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-
-<title>AFMS</title>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AFMS - Airport Flight Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
 </head>
+<body class="site-wrapper">
 
-<body>
+    <!-- Navbar Component -->
+    {% include 'components/navbar.html' %}
 
-<h1>Navigation Links</h1>
+    <!-- Main Page Content -->
+    <main class="main-container">
+        {% block content %}
+        {% endblock %}
+    </main>
 
-<a href="{{ url_for('Airlines.Display_Airline') }}">Airlines</a><br>
-<a href="{{ url_for('Airports.Display_Airport') }}">Airport</a><br>
-<a href="{{ url_for('Aircrafts.Display_Aircraft') }}">Aircraft</a>
+    <!-- Footer Component -->
+    {% include 'components/footer.html' %}
 
-
+    <!-- Scripts (Loaded once at the bottom) -->
+    <script src="{{ url_for('static', filename='js/table-pagination.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 </body>
-
-
 </html>

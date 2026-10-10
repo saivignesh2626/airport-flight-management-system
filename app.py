@@ -7,6 +7,8 @@ from routes.Airports import Airports_bp
 from routes.Airlines import Airlines_bp
 from routes.Aircrafts import Aircrafts_bp
 from routes.Runways import Runways_bp
+from routes.Terminals import Terminals_bp
+from routes.Gates import Gates_bp
 
 app=Flask(__name__)
 
@@ -14,6 +16,8 @@ app.register_blueprint(Airports_bp)
 app.register_blueprint(Airlines_bp)
 app.register_blueprint(Aircrafts_bp)
 app.register_blueprint(Runways_bp)
+app.register_blueprint(Terminals_bp)
+app.register_blueprint(Gates_bp)
 
 app.secret_key=os.getenv('SECRET_KEY','fallback_secret_for_testing')
     

@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{%block title%}AFMS-Airlines{%endblock%}
+{% block content %}
+
+    <h1>Update Gate Details</h1>
+
+    <div>
+        <form action="{{ url_for('Gates.Update_Gate', id=Gate.Gate_ID) }}" method="POST">
+
+            <label>Gate Number</label>
+            <input type="text" name="Gate_Number" maxlength="3" value="{{ Gate.Gate_Number }}" required><br>
+
+            <label>Status</label>
+            <select name="Gate_Status" required>
+                {% for Status in Status_Enum %}
+                <option value="{{ Status }}" {{ 'selected' if Status == Gate.Gate_Status }}>
+                    {{ Status }}
+                </option>
+                {% endfor %}
+            </select><br>
+
+            <label>Terminal</label>
+            <select name="Terminal_ID">
+                <option value="" {{ 'selected' if not Gate.Terminal_ID }}>-- None --</option>
+                {% for Terminal in Terminal_Data %}
+                <option value="{{ Terminal.Terminal_ID }}" {{ 'selected' if Terminal.Terminal_ID == Gate.Terminal_ID }}>
+                    {{ Terminal.Terminal_Name }} ({{ Terminal.Terminal_Number }})
+                </option>
+                {% endfor %}
+            </select><br>
+
+            <button type="submit" class="btn-submit">Save Changes</button>
+            <a href="{{ url_for('Gates.Display_Gate') }}" style="color:red">Cancel</a>
+
+        </form>
+    </div>
+
+{%endblock%}

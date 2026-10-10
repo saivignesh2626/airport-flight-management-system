@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{%block title%}AFMS-Airlines{%endblock%}
+{% block content %}
+
+    <h1>Update Terminal Details</h1>
+
+    <div>
+        <form action="{{ url_for('Terminals.Update_Terminal', id=Terminal.Terminal_ID) }}" method="POST">
+
+            <label>Terminal Number</label>
+            <input type="text" name="Terminal_Number" maxlength="4" value="{{ Terminal.Terminal_Number if Terminal.Terminal_Number else '' }}"><br>
+
+            <label>Terminal Name</label>
+            <input type="text" name="Terminal_Name" maxlength="100" value="{{ Terminal.Terminal_Name }}" required><br>
+
+            <label>Status</label>
+            <select name="Terminal_Status" required>
+                {% for Status in Status_Enum %}
+                <option value="{{ Status }}" {{ 'selected' if Status == Terminal.Terminal_Status }}>
+                    {{ Status }}
+                </option>
+                {% endfor %}
+            </select><br>
+
+            <label>Airport Name</label>
+            <select name="Airport_ID" required>
+                {% for Airport in Airport_Data %}
+                <option value="{{ Airport.Airport_ID }}" {{ 'selected' if Airport.Airport_ID == Terminal.Airport_ID }}>
+                    {{ Airport.Airport_Name }}
+                </option>
+                {% endfor %}
+            </select><br>
+
+            <button type="submit" class="btn-submit">Save Changes</button>
+            <a href="{{ url_for('Terminals.Display_Terminal') }}" style="color:red">Cancel</a>
+
+        </form>
+    </div>
+
+{%endblock%}

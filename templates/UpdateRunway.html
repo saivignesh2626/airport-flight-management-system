@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{%block title%}AFMS-Runway{%endblock%}
+{% block content %}
+
+    <h1>Update Runway Details</h1>
+
+    <div>
+        <form action="{{ url_for('Runways.Update_Runway', id=Runway.Runway_ID) }}" method="POST">
+
+            <label>Code</label>
+            <input type="text" name="Runway_Code" value="{{ Runway.Runway_Code }}" required><br>
+
+            <label>Length</label>
+            <input type="number" step="any" min="0" name="Runway_Length" value="{{ Runway.Runway_Length }}" required><br>
+
+            <label>Status</label>
+            <select name="Runway_Status" required>
+                {% for Status in Status_Enum %}
+                <option value="{{ Status }}" {{ 'selected' if Status == Runway.Runway_Status }}>
+                    {{ Status }}
+                </option>
+                {% endfor %}
+            </select><br>
+
+            <label>Airport Name</label>
+            <select name="Airport_ID" required>
+                {% for Airport in Airport_Data %}
+                <option value="{{ Airport.Airport_ID }}" {{ 'selected' if Airport.Airport_ID == Runway.Airport_ID }}>
+                    {{ Airport.Airport_Name }}
+                </option>
+                {% endfor %}
+            </select><br>
+
+            <button type="submit" class="btn-submit">Save Changes</button>
+            <a href="{{ url_for('Runways.Display_Runway') }}" style="color:red">Cancel</a>
+
+        </form>
+    </div>
+
+{%endblock%}

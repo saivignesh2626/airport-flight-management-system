@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<title>AFMS-Aircrafts</title>
-<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
-
-<body>
+{% extends 'base.html'%}
+{%block title%}AFMS-Aircrafts{%endblock%}
+{% block content %}
 
     <h1>Aircrafts List</h1>
 
@@ -41,7 +35,7 @@
 
                 <td>
                     
-                    <form action="{{ url_for('Aircrafts.Delete_Aircraft' ,id=Aircraft.Aircraft_ID)}}">
+                    <form action="{{ url_for('Aircrafts.Delete_Aircraft' ,id=Aircraft.Aircraft_ID)}}" method="POST">
                         <button type="submit" class="btn-delete">Delete</button>
                     </form>
 
@@ -86,8 +80,4 @@
     
     </form>
 
-</body>
-
-</head>
-
-</html>
+{%endblock%}

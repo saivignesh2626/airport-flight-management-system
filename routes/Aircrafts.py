@@ -36,10 +36,11 @@ def Add_Aircraft():
 
 @Aircrafts_bp.route('/delete/<int:id>',methods=['POST'])
 def Delete_Aircraft(id):
-    sql='Delete from Aircraft where Aircraft_ID=%s'
-    params=(id,)
-    execute(sql,params)
-    return redirect(url_for('Aircrafts.Display_Aircraft'))
+    if request.method=='POST':
+        sql='Delete from Aircraft where Aircraft_ID=%s'
+        params=(id,)
+        execute(sql,params)
+        return redirect(url_for('Aircrafts.Display_Aircraft'))
 
 
 

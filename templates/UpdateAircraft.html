@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-<title>AFMS-Update Aircraft</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-</head>
-
-
-<body>
+{% extends 'base.html'%}
+{%block title%}AFMS-Aircrafts{%endblock%}
+{% block content %}
 
 <h1>Update Aircraft Details</h1>
 
@@ -51,6 +42,4 @@
 
 </div>
 
-</body>
-
-</html>
+{%endblock%}

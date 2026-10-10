@@ -1,108 +1,391 @@
-/* Base page styling */
+/* ======================================================
+   Header & Navbar Styling
+====================================================== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2 {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
-    margin-top: 40px;
+.navbar {
+    background-color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* Reusable Table styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
+.nav-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
 }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-th {
-    background-color: #3498db;
-    color: white;
-    text-transform: uppercase;
-    font-size: 14px;
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
     letter-spacing: 0.5px;
 }
 
-tr:hover {
-    background-color: #f9f9f9;
+.brand-icon {
+    font-size: 1.3rem;
+    color: #3498db;
 }
 
-/* Reusable Form container styling */
-.form-container {
-    background-color: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-links a {
+    color: #ecf0f1;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: rgba(52, 152, 219, 0.25);
+    color: #ffffff;
+}
+
+.nav-links a.active {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+/* Page wrapper inside base layout */
+.main-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px 60px 20px;
+}
+
+
+/* ======================================================
+   Base Page Styling
+====================================================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    color: #334155;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px 60px 20px;
+    line-height: 1.5;
+}
+
+h1, h2 {
+    color: #1e293b;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 12px;
+    margin-top: 45px;
+    margin-bottom: 24px;
+}
+
+/* ======================================================
+   Table Container & Table Styling
+====================================================== */
+/* Container wrapper ensures border-radius and shadows clip cleanly */
+.table-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    text-align: left;
+}
+
+th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #edf2f7;
+    vertical-align: middle;
+}
+
+th {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    border-bottom: none;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr {
+    transition: background-color 0.18s ease-in-out;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Action Links (Edit) */
+td a {
+    color: #2980b9;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: #ebf5fb;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+td a:hover {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+/* Inline delete forms */
+td form {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+/* ======================================================
+   Form Container & Input Controls
+====================================================== */
+form:not(td form), .form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+    max-width: 550px;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 label {
     display: inline-block;
-    width: 120px;
-    font-weight: bold;
-    margin-bottom: 15px;
+    width: 140px;
+    font-weight: 600;
     color: #2c3e50;
-}
-
-input[type="text"], input[type="number"], select {
-    padding: 10px;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
     font-size: 14px;
+    margin-bottom: 12px;
 }
 
-input[type="text"]:focus, input[type="number"]:focus, select:focus {
+input[type="text"], 
+input[type="number"], 
+select {
+    padding: 9px 12px;
+    width: 280px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1e293b;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 14px;
+}
+
+input[type="text"]:focus, 
+input[type="number"]:focus, 
+select:focus {
     outline: none;
     border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
-/* Reusable Button styling */
+/* ======================================================
+   Button Styling
+====================================================== */
 button {
-    padding: 10px 15px;
+    padding: 9px 18px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
 }
 
 .btn-submit {
     background-color: #2ecc71;
-    color: white;
-    font-size: 16px;
-    padding: 12px 24px;
+    color: #ffffff;
+    padding: 11px 22px;
     margin-top: 10px;
 }
 
 .btn-submit:hover {
     background-color: #27ae60;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(46, 204, 113, 0.3);
 }
 
 .btn-delete {
-    background-color: #4b2925;
-    color: white;
-    padding: 8px 12px;
+    background-color: #e74c3c;
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 13px;
 }
 
 .btn-delete:hover {
     background-color: #c0392b;
+    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+}
+
+/* ======================================================
+   Pagination Navigation Bar
+====================================================== */
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.page-info {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.page-btn {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #cbd5e1;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.page-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Scroll Elevation */
+.navbar-scrolled {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    background-color: #243342;
+    transition: all 0.25s ease-in-out;
+}
+
+/* Mobile Hamburger Button (Hidden on Desktop) */
+.nav-toggle-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hamburger-bar {
+    width: 22px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .nav-toggle-btn {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #2c3e50;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        border-bottom: 2px solid #3498db;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-links.nav-open {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 10px 12px;
+    }
+}
+
+/* Sticky footer layout */
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container {
+    flex: 1 0 auto;
+    max-width: 1000px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 0 20px 40px 20px;
+}
+
+/* Footer Styling */
+.app-footer {
+    flex-shrink: 0;
+    background-color: #1e293b;
+    border-top: 1px solid #334155;
+    color: #94a3b8;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 0.85rem;
+}
+
+.footer-container p {
+    margin: 0;
 }

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AFMS-Update Airline</title>
-    <!-- We can reuse your exact same stylesheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+{% extends 'base.html'%}
+{%block title%}AFMS-Airlines{%endblock%}
+{% block content %}
     
     <h1>Update Airline Details</h1>
     
@@ -37,5 +32,4 @@
         </form>
     </div>
 
-</body>
-</html>
+{%endblock%}

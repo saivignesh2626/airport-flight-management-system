@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>AFMS-Airlines</title>
+{% extends 'base.html'%}
+{%block title%}AFMS-Airlines{%endblock%}
+{% block content %}
 
-<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"><link>
 
-</head>
 
-<body>
 <h1>Airline List</h1>
 <table>
 
@@ -33,14 +29,14 @@
 <td>{{Airline.Country}}</td>
 
 <td>
-<a href="{{url_for('Airlines.Update_Airline',id=Airline.Airline_ID)}}" style="text-decoration: none; background-color: #f39c12; color: white; padding: 8px 12px; border-radius: 4px; margin-right: 5px; font-weight: bold; font-size: 14px;">Edit</a>
+<a href="{{url_for('Airlines.Update_Airline',id=Airline.Airline_ID)}}" >Edit</a>
 </td>
 
 <td>
 
 <form action="{{url_for('Airlines.Delete_Airline',id=Airline.Airline_ID)}}" method="POST" style="margin: 0;">
 
-<button type="submit" style="color: white; background-color: red;">Delete</button>
+<button type="submit" class="btn-delete" >Delete</button>
 
 </form>
 
@@ -84,6 +80,4 @@
 </div>
 
 
-
-</body>
-</html>
+{%endblock%}
